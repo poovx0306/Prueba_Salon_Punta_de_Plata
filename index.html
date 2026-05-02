@@ -3,23 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salón Punta de Plata | Demo de Plataforma Digital</title>
+    <title>Salón Punta de Plata | Plataforma de Eventos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap');
         
-        :root {
-            --silver: #cbd5e1;
-            --navy: #0f172a;
-            --accent: #2563eb;
-        }
-
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
 
         .glass-header {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(12px);
         }
 
@@ -30,69 +24,72 @@
             background-position: center;
         }
 
-        .silver-gradient {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        .calendar-day {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
         }
+
+        .day-reserved { background-color: #fee2e2; color: #ef4444; text-decoration: line-through; cursor: not-allowed; }
+        .day-free { background-color: #f1f5f9; color: #475569; cursor: pointer; }
+        .day-free:hover { background-color: #2563eb; color: white; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
     <nav class="glass-header fixed w-full z-50 text-white border-b border-white/10">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex flex-col">
-                <span class="text-2xl font-bold tracking-widest serif uppercase">Punta de Plata</span>
-                <span class="text-[10px] uppercase tracking-[0.4em] text-blue-400 font-bold">Salón de Eventos</span>
+                <span class="text-xl md:text-2xl font-bold tracking-widest serif uppercase">Punta de Plata</span>
+                <span class="text-[8px] md:text-[10px] uppercase tracking-[0.4em] text-blue-400 font-bold">Salón de Eventos</span>
             </div>
-            <div class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-widest">
-                <a href="#salon" class="hover:text-blue-400 transition">El Salón</a>
-                <a href="#cotizador" class="hover:text-blue-400 transition">Cotizar</a>
+            <div class="flex items-center space-x-2 md:space-x-4">
+                <a href="https://wa.me/5217750000000" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 md:px-6 md:py-2.5 rounded-full font-bold text-[10px] md:text-sm transition shadow-lg flex items-center">
+                    <i class="fas fa-calendar-check mr-2 hidden md:inline"></i> AGENDA VISITA
+                </a>
             </div>
-            <a href="https://wa.me/5217750000000" class="bg-blue-600 px-6 py-2 rounded-full font-bold text-sm hover:bg-blue-700 transition shadow-lg">
-                Agenda Visita
-            </a>
         </div>
     </nav>
 
-    <header class="hero-bg h-screen flex items-center justify-center text-center text-white px-6">
+    <header class="hero-bg min-h-screen flex items-center justify-center text-center text-white px-6 pt-20">
         <div class="max-w-4xl">
-            <span class="text-blue-400 font-bold tracking-[0.5em] uppercase text-sm mb-6 block">Elegancia & Exclusividad</span>
-            <h1 class="text-5xl md:text-8xl font-bold mb-8 italic">Donde tus mejores momentos cobran vida.</h1>
-            <p class="text-xl md:text-2xl mb-12 font-light opacity-90 max-w-2xl mx-auto">Plataforma de gestión inteligente para eventos sociales y corporativos en Tulancingo.</p>
-            <div class="flex flex-col md:flex-row gap-6 justify-center">
-                <a href="#cotizador" class="bg-white text-navy px-10 py-4 rounded-full font-bold hover:bg-slate-100 transition shadow-2xl">Empezar a Cotizar</a>
+            <span class="text-blue-400 font-bold tracking-[0.3em] md:tracking-[0.5em] uppercase text-[10px] md:text-sm mb-6 block">Elegancia & Exclusividad</span>
+            <h1 class="text-4xl md:text-8xl font-bold mb-8 italic leading-tight">Tu evento soñado, perfectamente organizado.</h1>
+            <p class="text-lg md:text-2xl mb-12 font-light opacity-90 max-w-2xl mx-auto italic">Consulta disponibilidad y cotiza al instante en la plataforma oficial del Salón Punta de Plata.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#cotizador" class="bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-slate-100 transition shadow-2xl uppercase text-xs tracking-widest">Empezar Cotización</a>
+                <a href="#calendario" class="bg-blue-600/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 transition uppercase text-xs tracking-widest">Ver Calendario</a>
             </div>
         </div>
     </header>
 
-    <section id="cotizador" class="py-24 container mx-auto px-6">
-        <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden grid lg:grid-cols-2 border border-slate-100">
-            <div class="p-12 md:p-20 bg-slate-900 text-white">
-                <h3 class="text-4xl font-bold mb-8 serif italic">Diseña tu Evento</h3>
-                <p class="text-slate-400 mb-12 leading-relaxed">Nuestro sistema inteligente nos permite enviarte una propuesta personalizada en minutos. Selecciona los detalles y nuestro bot te contactará.</p>
+    <section id="cotizador" class="py-20 container mx-auto px-4">
+        <div class="bg-white rounded-[2rem] md:rounded-[3rem] shadow-2xl overflow-hidden grid lg:grid-cols-2 border border-slate-100">
+            <div class="p-8 md:p-16 bg-slate-900 text-white">
+                <h3 class="text-3xl md:text-4xl font-bold mb-6 serif italic italic">Diseña tu Evento</h3>
+                <p class="text-slate-400 mb-10 text-sm md:text-base">Indícanos los detalles de tu gran día y nuestro sistema generará una propuesta personalizada de inmediato.</p>
                 
-                <form class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Tipo de Evento</label>
-                            <select class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-blue-600 transition">
-                                <option class="text-navy">Boda</option>
-                                <option class="text-navy">XV Años</option>
-                                <option class="text-navy">Graduación</option>
-                                <option class="text-navy">Evento Empresarial</option>
+                <form class="space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-blue-400">Tipo de Celebración</label>
+                            <select class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-blue-600 text-sm">
+                                <option class="text-slate-900">Boda Elegante</option>
+                                <option class="text-slate-900">XV Años Temáticos</option>
+                                <option class="text-slate-900">Graduación</option>
+                                <option class="text-slate-900">Convención Empresarial</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Nº de Invitados</label>
-                            <input type="number" placeholder="Ej. 200" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-blue-600 transition">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-blue-400">Invitados Estimados</label>
+                            <input type="number" placeholder="Ej. 250" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-blue-600 text-sm">
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Fecha Aproximada</label>
-                        <input type="date" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-blue-600 transition">
-                    </div>
-                    <button class="w-full bg-blue-600 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-xl shadow-blue-900/20">
-                        Enviar Solicitud de Cotización
-                    </button>
+                    <button type="button" class="w-full bg-blue-600 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-xl text-xs tracking-widest">OBTENER COTIZACIÓN</button>
                 </form>
             </div>
             <div class="relative hidden lg:block">
@@ -101,12 +98,71 @@
         </div>
     </section>
 
+    <section id="calendario" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl md:text-5xl font-bold mb-4 serif italic leading-tight">Disponibilidad de Fechas</h3>
+                <p class="text-slate-500 max-w-xl mx-auto">Consulta los días libres para este mes. Las fechas marcadas en rojo ya han sido reservadas.</p>
+            </div>
+
+            <div class="max-w-md mx-auto bg-slate-50 p-6 md:p-8 rounded-[2rem] border border-slate-200">
+                <div class="flex justify-between items-center mb-8">
+                    <h4 class="font-bold text-lg uppercase tracking-widest">Abril 2026</h4>
+                    <div class="flex space-x-2">
+                        <button class="w-8 h-8 flex items-center justify-center bg-white border rounded-full text-slate-400"><i class="fas fa-chevron-left"></i></button>
+                        <button class="w-8 h-8 flex items-center justify-center bg-white border rounded-full text-slate-400"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-7 gap-2 text-center text-[10px] font-bold text-slate-400 mb-4 uppercase">
+                    <span>Dom</span><span>Lun</span><span>Mar</span><span>Mie</span><span>Jue</span><span>Vie</span><span>Sab</span>
+                </div>
+                <div class="grid grid-cols-7 gap-2">
+                    <div class="calendar-day day-free">1</div><div class="calendar-day day-free">2</div><div class="calendar-day day-free">3</div>
+                    <div class="calendar-day day-reserved">4</div><div class="calendar-day day-free">5</div><div class="calendar-day day-free">6</div>
+                    <div class="calendar-day day-free">7</div><div class="calendar-day day-free">8</div><div class="calendar-day day-free">9</div>
+                    <div class="calendar-day day-reserved">11</div><div class="calendar-day day-free">12</div><div class="calendar-day day-free">13</div>
+                    <div class="calendar-day day-free">14</div><div class="calendar-day day-free">15</div><div class="calendar-day day-free">16</div>
+                    <div class="calendar-day day-reserved">18</div><div class="calendar-day day-free">19</div><div class="calendar-day day-free">20</div>
+                    <div class="calendar-day day-free">21</div><div class="calendar-day day-free">22</div><div class="calendar-day day-free">23</div>
+                    <div class="calendar-day day-reserved">25</div><div class="calendar-day day-free">26</div><div class="calendar-day day-free">27</div>
+                </div>
+                <div class="mt-8 flex justify-center space-x-6 text-[10px] font-bold uppercase">
+                    <span class="flex items-center"><span class="w-3 h-3 bg-slate-200 rounded-full mr-2"></span> Libre</span>
+                    <span class="flex items-center"><span class="w-3 h-3 bg-red-200 rounded-full mr-2"></span> Reservado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900 text-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-center text-3xl md:text-5xl font-bold mb-16 serif italic leading-tight italic">Asegura tu Fecha</h3>
+            <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+                <div class="text-center space-y-4">
+                    <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-lg shadow-blue-500/20">1</div>
+                    <h5 class="font-bold text-xl">Cotiza tu Evento</h5>
+                    <p class="text-slate-400 text-sm font-light">Usa nuestro sistema para definir el tamaño y tipo de celebración.</p>
+                </div>
+                <div class="text-center space-y-4">
+                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-2xl mx-auto">2</div>
+                    <h5 class="font-bold text-xl">Agenda una Visita</h5>
+                    <p class="text-slate-400 text-sm font-light">Conoce nuestras instalaciones de lujo personalmente en Tulancingo.</p>
+                </div>
+                <div class="text-center space-y-4">
+                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-2xl mx-auto">3</div>
+                    <h5 class="font-bold text-xl">Realiza tu Apartado</h5>
+                    <p class="text-slate-400 text-sm font-light">Reserva con el 20% y asegura tu lugar en nuestro calendario oficial.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-slate-900 text-white py-16 border-t border-white/5">
-        <div class="container mx-auto px-6 text-center">
-            <span class="text-2xl font-bold serif uppercase tracking-widest block mb-4">Punta de Plata</span>
-            <p class="text-slate-500 max-w-sm mx-auto mb-8">Digitalizando la exclusividad de los mejores eventos en Tulancingo, Hidalgo.</p>
+        <div class="container mx-auto px-4 text-center">
+            <span class="text-2xl font-bold serif uppercase tracking-widest block mb-4 italic">Punta de Plata</span>
+            <p class="text-slate-500 max-w-sm mx-auto mb-8 text-sm italic italic leading-relaxed leading-relaxed">Exclusividad y elegancia en el corazón de Tulancingo, Hidalgo. Transformamos eventos en recuerdos eternos.</p>
             <div class="h-px w-20 bg-white/10 mx-auto mb-8"></div>
-            <p class="text-[10px] text-slate-600 uppercase tracking-widest">© 2026 Punta de Plata. Todos los derechos reservados.</p>
+            <p class="text-[10px] text-slate-600 uppercase tracking-[0.3em] font-bold font-bold">© 2026 Salón Punta de Plata. Todos los derechos reservados.</p>
         </div>
     </footer>
 
